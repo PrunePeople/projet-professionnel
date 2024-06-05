@@ -1,0 +1,41 @@
+{
+  "name": "projet-professionnel",
+  "version": "1.0.0",
+  "description": "Site internet responsive pour le restaurant Com d Roy situé à Andernos-les-Bains. Ce site comprend une barre de navigation, un footer, une page d'accueil mettant en avant le concept du restaurant, une page de contact avec une carte Google Maps pour localiser le restaurant, une page d'informations présentant l'histoire du restaurant et l'équipe, une page avec le menu/carte du restaurant incluant des photos de haute qualité pour chaque plat, une page de réservation permettant aux utilisateurs de créer un compte pour réserver une table (sans moyen de paiement), un back-office pour le restaurateur permettant de gérer les réservations et les produits affichés sur la carte/menu, et la possibilité d'acheter des bons cadeaux. Le site est disponible en français et en anglais pour accueillir une clientèle internationale.",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^9.8.8",
+    "axios": "^1.6.7",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.1",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "sass": "^1.72.0",
+    "swiper": "^11.1.1",
+    "tailwindcss": "^3.4.1",
+    "web-vitals": "^2.1.4"
+  },
+  "author": "Dedieu Audrey",
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "^8.1.4",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.0.0"
+  }
+}
