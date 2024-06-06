@@ -1,6 +1,7 @@
 {
   "name": "projet-professionnel",
   "version": "1.0.0",
+  "type": "module",
   "description": "Site internet responsive pour le restaurant Com d Roy situé à Andernos-les-Bains. Ce site comprend une barre de navigation, un footer, une page d'accueil mettant en avant le concept du restaurant, une page de contact avec une carte Google Maps pour localiser le restaurant, une page d'informations présentant l'histoire du restaurant et l'équipe, une page avec le menu/carte du restaurant incluant des photos de haute qualité pour chaque plat, une page de réservation permettant aux utilisateurs de créer un compte pour réserver une table (sans moyen de paiement), un back-office pour le restaurateur permettant de gérer les réservations et les produits affichés sur la carte/menu, et la possibilité d'acheter des bons cadeaux. Le site est disponible en français et en anglais pour accueillir une clientèle internationale.",
   "scripts": {
     "start": "react-scripts start",

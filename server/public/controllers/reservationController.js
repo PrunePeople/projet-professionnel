@@ -1,7 +1,7 @@
-const prisma = require('../../prismaClient');
-const moment = require('moment');
+import prisma from '../../prismaClient.js';
+import moment from 'moment';
 
-exports.createReservation = async (req, res) => {
+export const createReservation = async (req, res) => {
   console.log('Requête reçue pour créer une réservation:', req.body);
   try {
     const userId = req.body.userId;
@@ -39,7 +39,7 @@ exports.createReservation = async (req, res) => {
   }
 };
 
-exports.getReservations = async (req, res) => {
+export const getReservations = async (req, res) => {
   console.log('Requête reçue pour récupérer les réservations');
   try {
     const reservations = await prisma.reservation.findMany();

@@ -1,18 +1,18 @@
-const prisma = require('../../prismaClient');
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
-const nodemailer = require('nodemailer');
-const mailjetTransport = require('nodemailer-mailjet-transport');
+import prisma from '../../prismaClient.js';
+import bcrypt from 'bcrypt';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+import mailjetTransport from 'nodemailer-mailjet-transport';
 
 // Configurer Nodemailer pour utiliser Mailjet
 const transporter = nodemailer.createTransport(mailjetTransport({
   auth: {
-    apiKey: 'e36cc1c0378e9cf93a472c5e5d05bf21', // Remplace par ta clé API Mailjet
-    apiSecret: '8e38ec7f42eb600361659bf7bbc1a8c4' // Remplace par ta clé secrète API Mailjet
+    apiKey: process.env.MAILJET_API_KEY, // Utiliser les variables d'environnement
+    apiSecret: process.env.MAILJET_API_SECRET // Utiliser les variables d'environnement
   }
 }));
 
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     console.log('Requête reçue pour créer un utilisateur:', req.body);
     const { firstName, lastName, phone, email, password } = req.body;

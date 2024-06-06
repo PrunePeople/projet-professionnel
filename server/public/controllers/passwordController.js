@@ -1,9 +1,8 @@
-// server/public/controllers/passwordController.js
-const prisma = require('../../prismaClient');
-const crypto = require('crypto');
-const { sendResetPasswordEmail } = require('../utils/mailer');
+import prisma from '../../prismaClient.js';
+import crypto from 'crypto';
+import { sendResetPasswordEmail } from '../utils/mailer.js';
 
-exports.requestPasswordReset = async (req, res) => {
+export const requestPasswordReset = async (req, res) => {
   const { email } = req.body;
   const user = await prisma.user.findUnique({ where: { email } });
 

@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const { createUser } = require('../controllers/userController');
-const { loginUser } = require('../controllers/authController');
-const prisma = require('../../prismaClient');
+import { Router } from 'express';
+import { createUser } from '../controllers/userController.js';
+import { loginUser } from '../controllers/authController.js';
+import prisma from '../../prismaClient.js';
 
 const router = Router();
 
@@ -47,4 +47,4 @@ router.get('/debug/users', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
