@@ -1,6 +1,6 @@
-import prisma from '../../prismaClient.js';
+import prisma from '../../prismaClient.mjs';
 import crypto from 'crypto';
-import { sendResetPasswordEmail } from '../utils/mailer.js';
+import { sendResetPasswordEmail } from '../utils/mailer.mjs';
 
 export const requestPasswordReset = async (req, res) => {
   const { email } = req.body;

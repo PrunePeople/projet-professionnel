@@ -1,4 +1,4 @@
-import prisma from '../../prismaClient.js';
+import prisma from '../../prismaClient.mjs';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -7,9 +7,6 @@ export const loginUser = async (req, res) => {
 
   try {
     console.log('Requête de connexion reçue:', req.body);
-
-    // Vérification de la valeur de JWT_SECRET
-    console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
     const user = await prisma.user.findUnique({
       where: { email },

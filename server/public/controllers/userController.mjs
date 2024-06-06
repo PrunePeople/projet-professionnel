@@ -1,4 +1,4 @@
-import prisma from '../../prismaClient.js';
+import prisma from '../../prismaClient.mjs';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
@@ -7,8 +7,8 @@ import mailjetTransport from 'nodemailer-mailjet-transport';
 // Configurer Nodemailer pour utiliser Mailjet
 const transporter = nodemailer.createTransport(mailjetTransport({
   auth: {
-    apiKey: process.env.MAILJET_API_KEY, // Utiliser les variables d'environnement
-    apiSecret: process.env.MAILJET_API_SECRET // Utiliser les variables d'environnement
+    apiKey: process.env.MAILJET_API_KEY,
+    apiSecret: process.env.MAILJET_API_SECRET
   }
 }));
 

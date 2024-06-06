@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createUser } from '../controllers/userController.js';
-import { loginUser } from '../controllers/authController.js';
-import prisma from '../../prismaClient.js';
+import { createUser } from '../controllers/userController.mjs';
+import { loginUser } from '../controllers/authController.mjs';
+import prisma from '../../prismaClient.mjs';
 
 const router = Router();
 
@@ -48,3 +48,4 @@ router.get('/debug/users', async (req, res) => {
 });
 
 export default router;
+

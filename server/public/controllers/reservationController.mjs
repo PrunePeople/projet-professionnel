@@ -1,4 +1,4 @@
-import prisma from '../../prismaClient.js';
+import prisma from '../../prismaClient.mjs';
 import moment from 'moment';
 
 export const createReservation = async (req, res) => {
