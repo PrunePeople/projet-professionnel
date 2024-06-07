@@ -1,6 +1,0 @@
-{
-    "watch": ["*.mjs", "public/**/*.mjs"],
-    "ext": "mjs",
-    "exec": "node --experimental-modules index.mjs"
-  }
-  
