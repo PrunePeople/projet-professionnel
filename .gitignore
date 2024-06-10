@@ -1,24 +1,46 @@
 # dependencies
 /node_modules
+/dist
 
 # production
 /build
 
+# environment variables
+.env
+/server/.env
+
 # misc
 .DS_Store
+Thumbs.db
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# dotenv environment variables file
-.env
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
 
-# Node modules
-/node_modules
+# Unit test reports
+TEST*.xml
 
-# Environment variables
-/server/.env
+# Compiled code
+*.class
+*.py[cod]
 
-# Build outputs
-/build
+# Package files
+*.jar
+*.war
+
+# Applications
+*.app
+*.exe
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv

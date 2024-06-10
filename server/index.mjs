@@ -73,8 +73,8 @@ app.post('/api/register', async (req, res) => {
         const mailOptions = {
             from: 'audrey2dieu@gmail.com',
             to: email,
-            subject: 'Your Account Password',
-            text: `Your password is: ${password}`,
+            subject: 'Bienvenue sur Com d Roy',
+            text: `Votre mot de passe est: ${password}`,
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
@@ -133,7 +133,7 @@ app.post('/api/reservations', authenticateToken, async (req, res) => {
 
         if (userEmail) {
             const mailOptions = {
-                from: 'your-email@example.com',
+                from: 'audrey2dieu@gmail.com',
                 to: userEmail,
                 subject: 'Confirmation de réservation',
                 text: `Votre réservation pour ${guests} personnes le ${new Date(start).toLocaleString()} a été confirmée.`,

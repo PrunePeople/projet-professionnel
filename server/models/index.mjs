@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Création d'une instance Sequelize avec les informations de connexion à la base de données
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   host: process.env.DB_HOST,
   dialect: 'postgres',
@@ -164,11 +165,15 @@ const MenuItem = sequelize.define('MenuItem', {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: true, // Changement ici pour permettre les valeurs nulles
+    allowNull: true,
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: true, // Changement ici pour permettre les valeurs nulles
+    allowNull: true,
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   menuId: {
     type: DataTypes.INTEGER,

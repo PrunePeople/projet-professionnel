@@ -1,0 +1,175 @@
+
+Architecture du Système
+=======================
+
+Description Générale
+--------------------
+L'application "Com d'Roy" est une application web qui utilise une architecture en couches, comprenant :
+
+Client (Front-end)
+------------------
+- **Technologies utilisées** : React, Tailwind CSS, Chakra UI
+- **Fonctionnalités principales** : Interface utilisateur, navigation, interaction avec l'API
+
+Serveur (Back-end)
+------------------
+- **Technologies utilisées** : Node.js, Express.js
+- **Fonctionnalités principales** : Gestion des requêtes API, logique métier, authentification, gestion des sessions
+
+Base de Données
+---------------
+- **Technologie utilisée** : PostgreSQL
+- **Fonctionnalités principales** : Stockage et gestion des données des utilisateurs, réservations, menus
+
+Panneau d'Administration
+------------------------
+- **Technologie utilisée** : AdminJS
+- **Fonctionnalités principales** : Gestion des utilisateurs, réservations, et menus
+
+Schéma de l'Architecture
+------------------------
+```
+[ Client (React) ] <--> [ Serveur (Node.js + Express) ] <--> [ Base de Données (PostgreSQL) ]
+                                   |
+                                   V
+                        [ Panneau d'Administration (AdminJS) ]
+```
+
+Configuration de l’Environnement
+===============================
+
+Prérequis
+---------
+- Node.js (version 14.x ou supérieure)
+- PostgreSQL
+- Git
+
+Configuration des Variables d'Environnement
+-------------------------------------------
+Créez un fichier `.env` à la racine du projet avec les contenus suivants :
+
+```
+DB_NAME=mydatabase
+DB_USER=myuser
+DB_PASS=mypassword
+DB_HOST=localhost
+DB_PORT=5432
+JWT_SECRET=mysecret
+MAILJET_API_KEY=myapikey
+MAILJET_API_SECRET=myapisecret
+```
+
+Installation des Dépendances
+-----------------------------
+```
+npm install
+```
+
+Guide de Déploiement
+====================
+
+Préparation de l’Environnement de Déploiement
+---------------------------------------------
+
+1. **Cloner le dépôt** :
+   ```
+   git clone https://github.com/monprojet/application.git
+   cd application
+   ```
+
+2. **Installer les dépendances** :
+   ```
+   npm install
+   ```
+
+3. **Exécuter les migrations de base de données** :
+   ```
+   npx sequelize db:migrate
+   ```
+
+4. **Démarrer l'application** :
+   ```
+   npm start
+   ```
+
+API Documentation
+=================
+
+Endpoints Principaux
+--------------------
+
+**Utilisateur** :
+- **Inscription** : `POST /api/register`
+- **Connexion** : `POST /api/login`
+- **Obtenir les informations de l'utilisateur** : `GET /api/user/:id`
+- **Supprimer l'utilisateur** : `DELETE /api/user/:id`
+
+**Réservations** :
+- **Créer une réservation** : `POST /api/reservations`
+- **Obtenir les réservations** : `GET /api/reservations`
+- **Mettre à jour une réservation** : `PUT /api/reservations/:id`
+- **Supprimer une réservation** : `DELETE /api/reservations/:id`
+
+**Menus** :
+- **Créer un menu** : `POST /api/menus`
+- **Obtenir les menus** : `GET /api/menus`
+- **Mettre à jour un menu** : `PUT /api/menus/:id`
+- **Supprimer un menu** : `DELETE /api/menus/:id`
+
+Exemples de Requêtes
+--------------------
+
+**Inscription d'un utilisateur** :
+```
+POST /api/register
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+**Créer une réservation** :
+```
+POST /api/reservations
+{
+  "user_id": 1,
+  "reservation_date": "2024-06-01",
+  "reservation_time": "18:00:00",
+  "number_of_guests": 4,
+  "additional_info": "Aucun"
+}
+```
+
+Maintenance et Mise à Jour
+==========================
+
+Sauvegarde de la Base de Données
+--------------------------------
+```
+pg_dump -U myuser -F c mydatabase > mydatabase_backup.sql
+```
+
+Mise à Jour de l'Application
+----------------------------
+
+1. **Tirer les dernières modifications** :
+   ```
+   git pull origin main
+   ```
+
+2. **Réinstaller les dépendances** :
+   ```
+   npm install
+   ```
+
+3. **Exécuter les migrations si nécessaire** :
+   ```
+   npx sequelize db:migrate
+   ```
+
+4. **Redémarrer l'application** :
+   ```
+   npm start
+   ```
