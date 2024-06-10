@@ -41,6 +41,9 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+const personalEmail = process.env.REACT_APP_PERSONAL_EMAIL;
+const professionalEmail = process.env.REACT_APP_PROFESSIONAL_EMAIL;
+
 function generatePassword(length) {
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
     let password = "";
@@ -71,7 +74,7 @@ app.post('/api/register', async (req, res) => {
         });
 
         const mailOptions = {
-            from: 'audrey2dieu@gmail.com',
+            from: personalEmail,
             to: email,
             subject: 'Bienvenue sur Com d Roy',
             text: `Votre mot de passe est: ${password}`,
@@ -133,7 +136,7 @@ app.post('/api/reservations', authenticateToken, async (req, res) => {
 
         if (userEmail) {
             const mailOptions = {
-                from: 'audrey2dieu@gmail.com',
+                from: personalEmail,
                 to: userEmail,
                 subject: 'Confirmation de réservation',
                 text: `Votre réservation pour ${guests} personnes le ${new Date(start).toLocaleString()} a été confirmée.`,

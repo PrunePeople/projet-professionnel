@@ -4,7 +4,7 @@ Architecture du Système
 
 Description Générale
 --------------------
-L'application "Com d'Roy" est une application web qui utilise une architecture en couches, comprenant :
+L'application "Com d Roy" est une application web qui utilise une architecture en couches, comprenant :
 
 Client (Front-end)
 ------------------
