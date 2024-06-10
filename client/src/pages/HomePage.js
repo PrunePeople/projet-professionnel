@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <>
       <Header
-        backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-accueil.jpg`}
+        backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-home.jpg`}
         reviews={reviews}
         menuItems={menuItems}
         isMobile={isMobile}

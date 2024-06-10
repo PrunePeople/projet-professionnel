@@ -129,7 +129,7 @@ const Reservation = () => {
   return (
     <div>
       <Header
-        backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-contact.png`}
+        backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-reservation.jpg`}
       />
       <div className="container mx-auto px-auto">
         <Block

@@ -6,7 +6,7 @@ import { aboutData } from "../data/AboutData";
 const AboutPage = () => {
   return (
     <div>
-      <Header backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-2.png`} />
+      <Header backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-about.jpg`} />
       {aboutData.map((item, index) => (
         <Block
           key={index}

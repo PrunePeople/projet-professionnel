@@ -17,7 +17,7 @@ const Gallery = () => {
   return (
     <div>
       <Header
-        backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-gallery.png`}
+        backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-gallery.jpg`}
       />
       <div className="text-center mt-8 text-lg">
       <Block

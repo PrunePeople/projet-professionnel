@@ -24,7 +24,7 @@ function Contact() {
   return (
     <div>
       <Header
-        backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-contact.png`}
+        backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-contact.jpg`}
       />
 
       <div className="relative container mx-auto px-4 py-8">

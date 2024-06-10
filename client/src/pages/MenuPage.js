@@ -57,7 +57,7 @@ const MenuPage = () => {
 
   return (
     <div className="bg-primary-color text-secondary-color">
-      <Header backgroundImage={`${process.env.PUBLIC_URL}/asset/photos/header-menu.png`} />
+      <Header backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-menu.jpg`} />
       <div className="container mx-auto px-4 py-24">
         <Block
           title="Nos menus"
