@@ -1,0 +1,42 @@
+// Définition des couleurs principales
+:root {
+  --primary-color: #ffffff; // Blanc : pour les arrière-plans principaux et le texte sur fonds foncés
+  --secondary-color: #735e5d; // Gris brun : pour le texte secondaire et les en-têtes
+  --tertiary-color: #d04411; // Orange rougeâtre : pour les boutons, les liens, et les CTA
+  --validate-color: #6c7a70; // Vert : pour la validation
+  --error-color: #d04411;
+}
+
+// Réinitialisation et styles globaux
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--secondary-color);
+}
+
+p, label, a {
+  font-family: 'Roboto', sans-serif;
+}
+
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a:hover {
+  @apply text-tertiary underline italic;
+}
+
+.hover-picto:hover {
+  @apply text-tertiary;
+}

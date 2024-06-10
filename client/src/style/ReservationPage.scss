@@ -1,0 +1,83 @@
+.rbc-calendar {
+    background-color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.rbc-toolbar {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rbc-toolbar button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.rbc-toolbar button:hover {
+    background-color: var(--tertiary-color);
+}
+
+.rbc-time-view .rbc-time-header {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.rbc-time-view .rbc-time-content {
+    border-top: 1px solid var(--secondary-color);
+}
+
+.rbc-month-view {
+    background-color: var(--primary-color);
+}
+
+.rbc-today {
+    background-color: var(--primary-color);
+}
+
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--validate-color);
+    border-color: var(--validate-color);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 14px;
+    color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Styles pour les créneaux sélectionnés */
+.rbc-event {
+    background-color: var(--secondary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    position: relative;
+    border-radius: 4px;
+}
