@@ -55,7 +55,6 @@ const ContactForm = () => {
           className={`w-full p-2 border ${
             errors.lastName ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
-          required
           onBlur={handleBlur}
         />
         {errors.lastName && (
@@ -76,7 +75,6 @@ const ContactForm = () => {
           className={`w-full p-2 border ${
             errors.firstName ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
-          required
           onBlur={handleBlur}
         />
         {errors.firstName && (
@@ -97,7 +95,6 @@ const ContactForm = () => {
           className={`w-full p-2 border ${
             errors.email ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
-          required
           onBlur={handleBlur}
         />
         {errors.email && <p className={errorMessageClass()}>{errors.email}</p>}
@@ -117,7 +114,6 @@ const ContactForm = () => {
             errors.phone ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
           pattern="^\d{10}$"
-          required
           onBlur={handleBlur}
         />
         {errors.phone && <p className={errorMessageClass()}>{errors.phone}</p>}
@@ -153,7 +149,6 @@ const ContactForm = () => {
           className={`w-full p-2 border ${
             errors.subject ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
-          required
           onBlur={handleBlur}
         />
         {errors.subject && (
@@ -174,7 +169,6 @@ const ContactForm = () => {
           className={`w-full p-2 border ${
             errors.message ? "border-tertiary-500" : "border-secondary-300"
           } rounded`}
-          required
           onBlur={handleBlur}
         ></textarea>
         {errors.message && <p className={errorMessageClass()}>{errors.message}</p>}

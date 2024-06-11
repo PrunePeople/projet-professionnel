@@ -15,12 +15,6 @@ import Block from '../components/Block';
 function Contact() {
   const { textColor, hoverTextColor, iconColor } = useTheme();
 
-  // Définition des classes pour les rectangles de fond
-  const largeBgClass =
-    "absolute -left-10 top-20 w-3/4 h-full bg-secondary opacity-50 z-[-1]";
-  const smallBgClass =
-    "absolute -right-10 w-1/2 h-1/4 bg-tertiary opacity-50 z-[-1]";
-
   return (
     <div>
       <Header
@@ -106,9 +100,14 @@ function Contact() {
 
         {/* Google Maps */}
         <div className="mt-8">
-          <h3 className={`text-lg font-semibold mb-4 ${textColor}`}>
-            Trouvez-nous sur la carte
-          </h3>
+        <Block
+          title="Trouvez-nous sur la carte"
+          text=""
+          imageUrl=""
+          imageRight={true}
+          showBackground={true}
+          backgroundSize="medium"
+        />
           <iframe
             title="googleMap"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833.6492070426643!2d-1.1073076234060306!3d44.747173080993036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54a3a362fd5225%3A0x99c5a686d9b35262!2sCom%20D%20Roy!5e0!3m2!1sfr!2sfr!4v1712823515894!5m2!1sfr!2sfr"
@@ -120,8 +119,6 @@ function Contact() {
             tabIndex="0"
             className="rounded-lg shadow-lg"
           />
-          {/* Rectangle de fond pour la grande section */}
-          <div className={smallBgClass}></div>
         </div>
       </div>
     </div>

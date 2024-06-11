@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 AdminJS.registerAdapter({ Database, Resource });
 
@@ -41,9 +41,6 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const personalEmail = process.env.REACT_APP_PERSONAL_EMAIL;
-const professionalEmail = process.env.REACT_APP_PROFESSIONAL_EMAIL;
-
 function generatePassword(length) {
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
     let password = "";
@@ -55,16 +52,15 @@ function generatePassword(length) {
 }
 
 app.post('/api/register', async (req, res) => {
-    const { first_name, last_name, email, phone } = req.body;
+    const { first_name, last_name, email, phone, password } = req.body; // Assurez-vous que le mot de passe est inclus dans le corps de la requête
 
     try {
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
-            return res.status(400).json({ error: 'User with this email already exists' });
+            return res.status(400).json({ error: 'Un utilisateur avec cet email existe déjà.' });
         }
 
-        const password = generatePassword(12);
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10); // Hashage du mot de passe fourni par l'utilisateur
         const newUser = await User.create({
             first_name,
             last_name,
@@ -74,23 +70,24 @@ app.post('/api/register', async (req, res) => {
         });
 
         const mailOptions = {
-            from: personalEmail,
+            from: 'audrey2dieu@gmail.com', 
             to: email,
             subject: 'Bienvenue sur Com d Roy',
-            text: `Votre mot de passe est: ${password}`,
+            text: 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter avec votre email et le mot de passe que vous avez défini.'
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return res.status(500).json({ error: 'Failed to send email', details: error });
+                return res.status(500).json({ error: 'Échec de l’envoi de l’email.', details: error });
             }
-            res.status(201).json({ message: 'User registered and email sent' });
+            res.status(201).json({ message: 'Utilisateur enregistré et email de confirmation envoyé.' });
         });
 
     } catch (error) {
-        res.status(500).json({ error: 'Failed to register user', details: error.message });
+        res.status(500).json({ error: 'Échec de l’enregistrement de l’utilisateur', details: error.message });
     }
 });
+
 
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
@@ -115,6 +112,32 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+app.post('/api/change-password', authenticateToken, async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.user.id;
+  
+    try {
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ error: 'Current password is incorrect' });
+      }
+  
+      const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+      user.password = hashedNewPassword;
+      await user.save();
+  
+      res.status(200).json({ message: 'Password successfully updated' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to update password', details: error.message });
+    }
+  });  
+  
+
 app.post('/api/reservations', authenticateToken, async (req, res) => {
     const { start, guests, notes, animals, stroller, wheelchair, highChair } = req.body;
     const userId = req.user.id;
@@ -136,7 +159,7 @@ app.post('/api/reservations', authenticateToken, async (req, res) => {
 
         if (userEmail) {
             const mailOptions = {
-                from: personalEmail,
+                from: 'audrey2dieu@gmail.com',
                 to: userEmail,
                 subject: 'Confirmation de réservation',
                 text: `Votre réservation pour ${guests} personnes le ${new Date(start).toLocaleString()} a été confirmée.`,

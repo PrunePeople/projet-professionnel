@@ -45,7 +45,7 @@ const Gallery = () => {
                 alt={image.alt}
                 className="object-cover w-full flex-1"
               />
-              <h1 className={`text-center mt-2 ${textColor}`}>{image.title}</h1>
+              <h2 className={`text-center mt-2 ${textColor}`}>{image.title}</h2>
             </div>
           ))}
           {/* Rectangle de fond pour la grande section */}

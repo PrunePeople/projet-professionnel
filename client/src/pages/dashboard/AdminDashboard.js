@@ -6,7 +6,7 @@ const AdminDashboard = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center">Tableau de Bord Admin</h1>
+                <h2 className="text-2xl font-bold mb-6 text-center">Tableau de Bord Admin</h2>
                 <p className="text-center">Bienvenue sur le tableau de bord admin. Vous avez un accès complet au système.</p>
                 <div className="text-center mt-6">
                     <Link to="/back-office">
