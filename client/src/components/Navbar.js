@@ -89,7 +89,7 @@ export default function Navbar() {
     console.log('User role:', user.role);
 
     if (user.role === 'admin') {
-      navigate('/adminJS');
+      navigate('/admin-dashboard');
     } else {
       navigate('/dashboard');
     }

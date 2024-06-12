@@ -26,7 +26,7 @@ Cette application utilise React, Tailwind CSS, Framer Motion, Node.js, Express, 
 1. Clonez le dépôt :
 
    ```bash
-   git clone https://github.com/monprojet/application.git
+   git clone https://github.com/PrunePeople/projet-professionnel.git
    cd application
 
    ```

@@ -27,6 +27,12 @@ const MenuPage = () => {
     setSelectedMenu(menuId);
     setSearchQuery('');
     setSearchResults([]);
+
+    // Défile jusqu'à l'identifiant du bouton de menu
+    const element = document.getElementById(`menu-button-${menuId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   const handleSearch = (e) => {
@@ -49,10 +55,12 @@ const MenuPage = () => {
   };
 
   const images = [
-    `${process.env.PUBLIC_URL}/asset/photos/accueil-slide1.JPG`,
-    `${process.env.PUBLIC_URL}/asset/photos/accueil-slide6.JPG`,
-    `${process.env.PUBLIC_URL}/asset/photos/accueil-slide5.JPG`,
-    `${process.env.PUBLIC_URL}/asset/photos/accueil-slide4.JPG`,
+    `${process.env.PUBLIC_URL}/asset/photos/oeuf-cocotte.jpg`,
+    `${process.env.PUBLIC_URL}/asset/photos/plateau-de-charcuterie.jpg`,
+    `${process.env.PUBLIC_URL}/asset/photos/saumon-poele.jpg`,
+    `${process.env.PUBLIC_URL}/asset/photos/assortiment-de-dessert.jpg`,
+    `${process.env.PUBLIC_URL}/asset/photos/table-reservee.jpg`,
+    `${process.env.PUBLIC_URL}/asset/photos/plat-de-resistance-a-table.jpg`,
   ];
 
   return (
@@ -75,6 +83,7 @@ const MenuPage = () => {
                   src={images[index % images.length]}
                   alt={menu.title}
                   className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  onClick={() => handleMenuClick(menu.id)} // Ajoutez cet onClick
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 transition-all duration-500 group-hover:bg-opacity-0">
                   <h3 className="text-white text-xl font-bold transition-transform duration-500 transform translate-y-3 group-hover:translate-y-0">
@@ -90,6 +99,7 @@ const MenuPage = () => {
           {menus.map((menu) => (
             <li key={menu.id}>
               <button
+                id={`menu-button-${menu.id}`} // Ajoutez un identifiant unique
                 onClick={() => handleMenuClick(menu.id)}
                 className={`px-4 py-2 border-b-2 transition duration-300 ${
                   selectedMenu === menu.id ? 'border-tertiary-color text-tertiary-color' : 'border-transparent text-secondary-color'

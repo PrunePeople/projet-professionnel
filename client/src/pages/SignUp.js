@@ -4,8 +4,8 @@ import axios from "axios";
 import { FaEye, FaEyeSlash, FaInfoCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import Button from "../components/Button";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -24,51 +24,69 @@ const SignUp = ({ onSuccess }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const updatedValue = type === 'checkbox' ? checked : value;
+    const updatedValue = type === "checkbox" ? checked : value;
 
     setFormData({
-        ...formData,
-        [name]: updatedValue,
+      ...formData,
+      [name]: updatedValue,
     });
 
     const newErrors = { ...errors };
-    if (name === 'password') {
-        const passwordErrors = validatePassword(updatedValue);
-        if (Object.keys(passwordErrors).length === 0) {
-            delete newErrors.password;
-        } else {
-            newErrors.password = passwordErrors.password;
-        }
+    if (name === "password") {
+      const passwordErrors = validatePassword(updatedValue);
+      if (Object.keys(passwordErrors).length === 0) {
+        delete newErrors.password;
+      } else {
+        newErrors.password = passwordErrors.password;
+      }
     } else {
-        if (!updatedValue) {
-            newErrors[name] = 'Ce champ est requis.';
-        } else {
-            delete newErrors[name];
-        }
+      if (!updatedValue) {
+        newErrors[name] = "Ce champ est requis.";
+      } else {
+        delete newErrors[name];
+      }
     }
     setErrors(newErrors);
-};
+  };
 
-const validatePassword = (password) => {
+  const validatePassword = (password) => {
     let errors = {};
     if (password.length < 8) {
-        errors.password = 'Le mot de passe doit contenir au moins 8 caractères.';
+      errors.password = "Le mot de passe doit contenir au moins 8 caractères.";
     }
     if (!/[A-Z]/.test(password)) {
-        errors = {...errors, password: (errors.password || "") + ' Doit contenir au moins une lettre majuscule.'};
+      errors = {
+        ...errors,
+        password:
+          (errors.password || "") +
+          " Doit contenir au moins une lettre majuscule.",
+      };
     }
     if (!/[a-z]/.test(password)) {
-        errors = {...errors, password: (errors.password || "") + ' Doit contenir au moins une lettre minuscule.'};
+      errors = {
+        ...errors,
+        password:
+          (errors.password || "") +
+          " Doit contenir au moins une lettre minuscule.",
+      };
     }
     if (!/[0-9]/.test(password)) {
-        errors = {...errors, password: (errors.password || "") + ' Doit contenir au moins un chiffre.'};
+      errors = {
+        ...errors,
+        password:
+          (errors.password || "") + " Doit contenir au moins un chiffre.",
+      };
     }
     if (!/[!@#$%^&*]/.test(password)) {
-        errors = {...errors, password: (errors.password || "") + ' Doit contenir au moins un caractère spécial.'};
+      errors = {
+        ...errors,
+        password:
+          (errors.password || "") +
+          " Doit contenir au moins un caractère spécial.",
+      };
     }
     return errors;
-};
-
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -98,22 +116,24 @@ const validatePassword = (password) => {
     e.preventDefault();
     setError("");
     setMessage("");
-  
+
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-  
+
     try {
       const response = await axios.post(
         "http://localhost:3001/api/register",
         formData
       );
       console.log("Réponse de l'API:", response);
-  
+
       if (response.data) {
-        toast.success(response.data.message || "Inscription réussie ! Bienvenue à bord.");
+        toast.success(
+          response.data.message || "Inscription réussie ! Bienvenue à bord."
+        );
         setTimeout(() => {
           onSuccess();
         }, 3000); // Délai de 3 secondes avant d'appeler onSuccess
@@ -124,16 +144,28 @@ const validatePassword = (password) => {
       console.error("Erreur lors de la requête:", error);
       setError(
         error.response?.data?.error ||
-        "Erreur lors de l'enregistrement de l'utilisateur"
+          "Erreur lors de l'enregistrement de l'utilisateur"
       );
-      toast.error(error.response?.data?.message || "Inscription échouée. Veuillez réessayer.");
+      toast.error(
+        error.response?.data?.message ||
+          "Inscription échouée. Veuillez réessayer."
+      );
     }
-  };  
-   
+  };
 
   return (
     <div>
-        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h2 className="text-2xl text-secondary font-bold mb-6">Inscrivez-vous</h2>
       <p className="text-sm text-secondary mb-4">
         Déjà inscrit ?{" "}
@@ -213,34 +245,42 @@ const validatePassword = (password) => {
             <p className="text-xs text-tertiary mt-1">{errors.phone}</p>
           )}
         </div>
+        
         <div className="relative">
+          {/* Étiquette pour le champ de mot de passe */}
           <label
             htmlFor="password"
             className="block text-secondary flex items-center"
           >
             Mot de passe
+            {/* Icône d'information avec tooltip pour des conseils sur le mot de passe */}
             <FaInfoCircle
               data-tooltip-id="password-info"
               data-tooltip-content="Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial."
               className="ml-2 text-secondary cursor-pointer hover:text-tertiary"
             />
+            {/* Tooltip qui s'affiche au survol de l'icône */}
             <Tooltip id="password-info" place="top" effect="solid" />
           </label>
+          {/* Champ de saisie pour le mot de passe */}
           <input
-            type={isPasswordVisible ? "text" : "password"}
+            type={isPasswordVisible ? "text" : "password"} // Changement du type en texte si le mot de passe est visible
             className="mt-1 block w-full p-2 border border-secondary rounded-md"
-            value={formData.password}
-            onChange={handleChange}
+            value={formData.password} // Valeur actuelle du champ de mot de passe
+            onChange={handleChange} // Fonction appelée à chaque changement de valeur
             placeholder="Mot de passe"
             name="password"
             id="password"
           />
+          {/* Icône pour afficher/masquer le mot de passe */}
           <span
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            onClick={() => setIsPasswordVisible(!isPasswordVisible)} // Bascule entre l'affichage et le masquage du mot de passe
             className="absolute right-3 top-8 cursor-pointer text-3xl hover:text-tertiary"
           >
-            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />} 
+            {/* Change d'icône en fonction de l'état de visibilité */}
           </span>
+          {/* Message d'erreur pour le champ de mot de passe */}
           {errors.password && (
             <p className="text-xs text-tertiary mt-1">{errors.password}</p>
           )}

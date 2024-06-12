@@ -1,21 +1,36 @@
 import React from "react";
+// Importation de React
+
 import useForm from "../hooks/useForm";
+// Importation du hook personnalisé useForm pour gérer le formulaire
+
 import validate from "../hooks/validate";
+// Importation de la fonction de validation pour vérifier les valeurs du formulaire
+
 import { useTheme } from "../context/ThemeContext";
+// Importation du contexte de thème pour accéder aux styles dynamiques
+
 import Button from "./Button";
-import axios from 'axios';
+// Importation du composant Button pour le bouton de soumission
+
+import axios from "axios";
+// Importation d'axios pour effectuer des requêtes HTTP
 
 const ContactForm = () => {
+  // Définition du composant fonctionnel ContactForm
+
   const { errorMessageClass } = useTheme();
+  // Utilisation du contexte de thème pour obtenir la classe de message d'erreur
 
   // Fonction pour soumettre le formulaire via une requête HTTP POST
   const submitForm = () => {
-    axios.post('http://localhost:5000/send-email', values)
-      .then(response => {
+    axios
+      .post("http://localhost:5000/send-email", values)
+      .then((response) => {
         console.log(response.data);
         // Afficher un message de succès ou rediriger l'utilisateur
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         // Afficher un message d'erreur
       });
@@ -38,6 +53,11 @@ const ContactForm = () => {
     validate,
     submitForm
   );
+  // values : état des valeurs du formulaire
+  // handleChange : fonction pour gérer les changements dans les champs du formulaire
+  // handleSubmit : fonction pour gérer la soumission du formulaire
+  // handleBlur : fonction pour gérer le flou des champs (blur event)
+  // errors : état des erreurs de validation
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -81,24 +101,28 @@ const ContactForm = () => {
           <p className={errorMessageClass()}>{errors.firstName}</p>
         )}
       </div>
-      {/* Email */}
+      {/* Section pour le champ Email */}
       <div>
+        {/* Étiquette pour le champ email */}
         <label htmlFor="email" className="block mb-2">
           E-mail
         </label>
+        {/* Champ de saisie pour l'email */}
         <input
-          type="email"
-          id="email"
-          name="email"
-          value={values.email || ""}
-          onChange={handleChange}
+          type="email" // Type du champ défini comme email
+          id="email" // Identifiant unique pour le champ
+          name="email" // Nom du champ utilisé pour le mapping des valeurs
+          value={values.email || ""} // Valeur actuelle du champ, initialisée à une chaîne vide si aucune valeur n'est présente
+          onChange={handleChange} // Fonction appelée à chaque changement de valeur pour mettre à jour l'état
           className={`w-full p-2 border ${
             errors.email ? "border-tertiary-500" : "border-secondary-300"
-          } rounded`}
-          onBlur={handleBlur}
+          } rounded`} // Classes CSS dynamiques pour appliquer des styles en fonction des erreurs
+          onBlur={handleBlur} // Fonction appelée lorsque le champ perd le focus pour valider le champ
         />
+        {/* Affichage du message d'erreur si une erreur est présente pour ce champ */}
         {errors.email && <p className={errorMessageClass()}>{errors.email}</p>}
       </div>
+
       {/* Téléphone */}
       <div>
         <label htmlFor="phone" className="block mb-2">
@@ -171,12 +195,13 @@ const ContactForm = () => {
           } rounded`}
           onBlur={handleBlur}
         ></textarea>
-        {errors.message && <p className={errorMessageClass()}>{errors.message}</p>}
+        {errors.message && (
+          <p className={errorMessageClass()}>{errors.message}</p>
+        )}
       </div>
+      {/* Bouton de soumission */}
       <div className="flex justify-end">
-        <Button
-          type="submit"
-          className="p-1 ml-2 item-end">
+        <Button type="submit" className="p-1 ml-2 item-end">
           Envoyer
         </Button>
       </div>
@@ -185,3 +210,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+// Exportation du composant ContactForm pour pouvoir l'utiliser dans d'autres fichiers
