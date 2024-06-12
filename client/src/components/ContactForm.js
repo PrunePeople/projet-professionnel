@@ -16,6 +16,9 @@ import Button from "./Button";
 import axios from "axios";
 // Importation d'axios pour effectuer des requêtes HTTP
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const ContactForm = () => {
   // Définition du composant fonctionnel ContactForm
 
@@ -25,14 +28,16 @@ const ContactForm = () => {
   // Fonction pour soumettre le formulaire via une requête HTTP POST
   const submitForm = () => {
     axios
-      .post("http://localhost:5000/send-email", values)
+      .post("http://localhost:3001/send-email", values)
       .then((response) => {
         console.log(response.data);
         // Afficher un message de succès ou rediriger l'utilisateur
+        toast.success("Email envoyé avec succès !");
       })
       .catch((error) => {
         console.error(error);
         // Afficher un message d'erreur
+        toast.error("Erreur lors de l'envoi de l'email. Veuillez réessayer.");
       });
   };
 
@@ -60,6 +65,19 @@ const ContactForm = () => {
   // errors : état des erreurs de validation
 
   return (
+    <>
+    <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        className="mt-16"
+      />
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Nom */}
       <div>
@@ -206,6 +224,7 @@ const ContactForm = () => {
         </Button>
       </div>
     </form>
+    </>
   );
 };
 

@@ -61,6 +61,31 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Nouvelle Route POST pour envoyer un email depuis le formulaire de contact
+app.post("/send-email", async (req, res) => {
+  const { firstName, lastName, email, phone, company, subject, message } = req.body;
+
+  const mailOptions = {
+    from: email,
+    to: 'audrey2dieu@gmail.com', // Remplacez par votre adresse email
+    subject: `Nouveau message de contact : ${subject}`,
+    text: `
+      Nom: ${firstName} ${lastName}
+      Email: ${email}
+      Téléphone: ${phone}
+      Société: ${company}
+      Message: ${message}
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Email envoyé avec succès' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'email', details: error.message });
+  }
+});
+
 // Route POST pour enregistrer un nouvel utilisateur
 app.post("/api/register", async (req, res) => {
   // Extraction des données de la requête

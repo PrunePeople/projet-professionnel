@@ -9,8 +9,10 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import Block from "../components/Block";
 import Button from "../components/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-moment.locale('fr'); // Set moment to use French locale
+moment.locale("fr"); // Set moment to use French locale
 const localizer = momentLocalizer(moment);
 
 const Reservation = () => {
@@ -118,16 +120,35 @@ const Reservation = () => {
         setWheelchair(false);
         setHighChair(false);
         setErrors({});
+        // Affiche un toast de succès
+        toast.success("Réservation réussie !");
       } else {
         console.error("Failed to create reservation");
+        // Affiche un toast d'erreur en cas d'échec de la réservation
+        toast.error("Échec de la réservation. Veuillez réessayer.");
       }
     } catch (error) {
       console.error("Error creating reservation", error);
+      // Affiche un toast d'erreur en cas d'erreur lors de la création de la réservation
+      toast.error(
+        "Erreur lors de la création de la réservation. Veuillez réessayer."
+      );
     }
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Header
         backgroundImage={`${process.env.PUBLIC_URL}/asset/header/header-reservation.jpg`}
       />
@@ -160,13 +181,16 @@ const Reservation = () => {
         {selectedSlot && (
           <div className="mt-8 flex justify-center">
             <h2 className="text-xl font-bold text-secondary mb-4">
-              Vous avez sélectionné le {moment(selectedSlot.start).format("LLLL")}
+              Vous avez sélectionné le{" "}
+              {moment(selectedSlot.start).format("LLLL")}
             </h2>
           </div>
         )}
         <form onSubmit={handleSubmit} className="mt-8 space-y-4 px-24">
           <div>
-            <label className="block text-secondary text-lg">Nombre de couverts :</label>
+            <label className="block text-secondary text-lg">
+              Nombre de couverts :
+            </label>
             <input
               type="number"
               value={guests}
@@ -180,7 +204,9 @@ const Reservation = () => {
             )}
           </div>
           <div>
-            <label className="block text-secondary text-lg">Notes supplémentaires :</label>
+            <label className="block text-secondary text-lg">
+              Notes supplémentaires :
+            </label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
@@ -227,7 +253,9 @@ const Reservation = () => {
             </div>
           </div>
           {errors.selectedSlot && (
-            <p className="text-xs text-tertiary mt-1 text-center">{errors.selectedSlot}</p>
+            <p className="text-xs text-tertiary mt-1 text-center">
+              {errors.selectedSlot}
+            </p>
           )}
           <div className="flex justify-center">
             <Button type="submit" className="w-1/2 text-center p-2">
